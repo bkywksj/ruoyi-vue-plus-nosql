@@ -1,0 +1,9 @@
+chmod 744 run.sh
+
+cd /home/ruoyi-monitor-admin;/home/ruoyi-monitor-admin/run.sh start
+
+cd /home/ruoyi-monitor-admin;/home/ruoyi-monitor-admin/run.sh stop
+
+cd /home/ruoyi-monitor-admin;/home/ruoyi-monitor-admin/run.sh restart
+
+cd /home/ruoyi-monitor-admin;/home/ruoyi-monitor-admin/run.sh status

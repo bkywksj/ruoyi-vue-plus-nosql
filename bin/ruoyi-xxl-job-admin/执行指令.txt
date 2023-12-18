@@ -1,0 +1,9 @@
+chmod 744 run.sh
+
+cd /home/ruoyi-xxl-job-admin;/home/ruoyi-xxl-job-admin/run.sh start
+
+cd /home/ruoyi-xxl-job-admin;/home/ruoyi-xxl-job-admin/run.sh stop
+
+cd /home/ruoyi-xxl-job-admin;/home/ruoyi-xxl-job-admin/run.sh restart
+
+cd /home/ruoyi-xxl-job-admin;/home/ruoyi-xxl-job-admin/run.sh status

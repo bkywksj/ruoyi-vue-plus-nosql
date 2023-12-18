@@ -1,0 +1,9 @@
+chmod 744 run.sh
+
+cd /home/ruoyi-vue-plus-nosql;/home/ruoyi-vue-plus-nosql/run.sh start
+
+cd /home/ruoyi-vue-plus-nosql;/home/ruoyi-vue-plus-nosql/run.sh stop
+
+cd /home/ruoyi-vue-plus-nosql;/home/ruoyi-vue-plus-nosql/run.sh restart
+
+cd /home/ruoyi-vue-plus-nosql;/home/ruoyi-vue-plus-nosql/run.sh status

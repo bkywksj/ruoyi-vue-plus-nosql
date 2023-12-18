@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  ruoyi-vue-plus-nosql:
+    image: ruoyi-vue-plus-nosql:4.8.0
+    container_name: ruoyi-vue-plus-nosql
+#    deploy:
+#      resources:
+#        limits:
+#          #          cpus: '0.50'
+#          memory: 500M
+    #        reservations:
+    #          cpus: '0.25'
+    #          memory: 20M
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      SERVER_PORT: 5405
+    volumes:
+      # 配置文件
+      - /home/ubuntu/apps/ruoyi-vue-plus-nosql/logs/:/ruoyi/server/logs/
+      - /home/ubuntu/apps/ruoyi-vue-plus-nosql/temp/:/ruoyi/server/temp/
+      # skywalking 探针
+#      - /docker/skywalking/agent/:/ruoyi/skywalking/agent
+    privileged: true
+    network_mode: "host"
+    restart: always
+

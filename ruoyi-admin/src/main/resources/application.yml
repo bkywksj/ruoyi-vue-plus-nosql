@@ -1,0 +1,209 @@
+# 项目相关配置
+ruoyi:
+  # 名称
+  name: ruoyi-vue-plus-nosql
+  # 版本
+  version: ${revision}
+  # 版权年份
+  copyrightYear: 2023
+  # 实例演示开关
+  demoEnabled: true
+  # 获取ip地址开关
+  addressEnabled: true
+  # 文件路径
+  profile: @ruoyi.profile@
+
+captcha:
+  enable: true
+  # 页面 <参数设置> 可开启关闭 验证码校验
+  # 验证码类型 math 数组计算 char 字符验证
+  type: MATH
+  # line 线段干扰 circle 圆圈干扰 shear 扭曲干扰
+  category: CIRCLE
+  # 数字验证码位数
+  numberLength: 1
+  # 字符验证码长度
+  charLength: 4
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 5405
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  # undertow 配置
+  undertow:
+    # HTTP post内容的最大大小。当值为-1时，默认值为大小是无限的
+    max-http-post-size: -1
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 512
+    # 是否分配的直接内存
+    direct-buffers: true
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      io: 8
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      worker: 256
+
+# 日志配置
+logging:
+  level:
+    org.dromara: @logging.level@
+    org.springframework: warn
+  config: classpath:logback-plus.xml
+
+
+# Spring配置
+spring:
+  application:
+    name: ${ruoyi.name}
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles:
+    active: @profiles.active@
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+      # 临时文件存储位置 避免临时文件被系统清理报错
+      location: @ruoyi.profile@
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      # 格式化输出
+      indent_output: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      # 允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Authorization
+  # token有效期 设为1天 (必定过期，过期需要重新登录) 单位: 秒
+  timeout: 86400
+  # 多端不同 token 有效期 可查看 LoginHelper.loginByDevice 方法自定义 token临时有效期 设为2小时 (指定时间无操作就过期) 单位: 秒 -1即不使用临时有效期
+  active-timeout: 7200
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # jwt秘钥
+  jwt-secret-key: cjQM2mCBsyC6vUYtuZ742cs6zRRXloZt
+
+# security配置
+security:
+  # 排除路径
+  excludes:
+    # 静态资源
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    # 公共路径
+    - /favicon.ico
+    - /error
+    # swagger 文档配置
+    - /*/api-docs
+    - /*/api-docs/**
+    # actuator 监控配置
+    - /actuator
+    - /actuator/**
+
+    #本地文件路径
+    - /profile/**
+
+    #免检接口
+    - /core/nocheck/**
+    - /dwz/**
+
+
+# api接口加密
+api-decrypt:
+  # 是否开启全局接口加密
+  enabled: true
+  # AES 加密头标识
+  headerFlag: encrypt-key
+  # 公私钥 非对称算法的公私钥 如：SM2，RSA 使用者请自行更换
+  publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALuH3coppu/7FgNp4IUWU/nQDE74CyzgSHkCWkSHzGXJB/MN7g7PG8qqvJknpwtRYHAUlDeYgmLs7NmMaKyaUPsCAwEAAQ==
+  privateKey: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAu4fdyimm7/sWA2nghRZT+dAMTvgLLOBIeQJaRIfMZckH8w3uDs8byqq8mSenC1FgcBSUN5iCYuzs2YxorJpQ+wIDAQABAkBEzbONEb0i/T91Xyo2ChwjYraxXoZTH7LXWwqdbCmNChUUOq1ndEe4avKjn6ih0vWK7IbMxyIHIqJDD+sQqcIxAiEA4v8wC1BG74NiEjUkvN8qief8aVTO5d+jc0L5uaYANbkCIQDTfclnxf+l/qqM/+smCKN/Effup3xyNevHnEcXOsMWUwIgMGBwTcjzBTJ74SOAS9xHxZIyQgR3/5eUzwi0DfOp0ckCIQCi1XdroeP6z4BK/YP0jbQsUw5cvrGvUdrOnoGR3hl0pwIhAJ3OOue4DTN18txQC8qQcBnGnGZrpYAQklJV+DPicPDt
+
+springdoc:
+  api-docs:
+    # 是否开启接口文档
+    enabled: @swagger.enabled@
+  swagger-ui:
+    # 持久化认证数据
+    persistAuthorization: true
+  info:
+    # 标题
+    title: '标题：${ruoyi.name}后台管理系统_接口文档'
+    # 描述
+    description: '描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...'
+    # 版本
+    version: '版本号: ${ruoyi.version}'
+    # 作者信息
+    contact:
+      name: Lion Li
+      email: crazylionli@163.com
+      url: https://gitee.com/dromara/RuoYi-Vue-Plus
+  components:
+    # 鉴权方式配置
+    security-schemes:
+      apiKey:
+        type: APIKEY
+        in: HEADER
+        name: ${sa-token.token-name}
+  #这里定义了两个分组，可定义多个，也可以不定义
+  group-configs:
+    #http://localhost:5400/v3/api-docs/service
+    - group: service
+      packages-to-scan: org.dromara.service
+    #http://localhost:5400/v3/api-docs/core
+    - group: core
+      packages-to-scan: org.dromara.core
+
+# 全局线程池相关配置
+thread-pool:
+  # 是否开启线程池
+  enabled: false
+  # 队列最大长度
+  queueCapacity: 128
+  # 线程池维护线程所允许的空闲时间
+  keepAliveSeconds: 300
+
+
+--- # mail 邮件发送
+mail:
+  enabled: true
+  host: smtp.126.com
+  port: 465
+  # 是否需要用户名密码验证
+  auth: true
+  # 发送方，遵循RFC-822标准
+  from: xxxxxxx@126.com
+  # 用户名（注意：如果使用foxmail邮箱，此处user为qq号）
+  user: xxxxx
+  # 密码（注意，某些邮箱需要为SMTP服务单独设置密码，详情查看相关帮助）
+  pass: xxxxxxxxxx
+  # 使用 STARTTLS安全连接，STARTTLS是对纯文本通信协议的扩展。
+  starttlsEnable: true
+  # 使用SSL安全连接
+  sslEnable: true
+  # SMTP超时时长，单位毫秒，缺省值不超时
+  timeout: 0
+  # Socket连接超时值，单位毫秒，缺省值不超时
+  connectionTimeout: 0
