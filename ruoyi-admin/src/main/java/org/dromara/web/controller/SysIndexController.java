@@ -23,9 +23,9 @@ public class SysIndexController {
      */
     private final RuoYiConfig ruoyiConfig;
 
-
     /**
      * 访问首页，提示语
+     *
      */
     @SaIgnore
     @GetMapping("/")

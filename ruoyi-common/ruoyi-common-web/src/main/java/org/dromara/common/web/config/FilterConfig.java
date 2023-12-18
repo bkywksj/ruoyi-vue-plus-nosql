@@ -1,11 +1,10 @@
 package org.dromara.common.web.config;
 
-import org.dromara.common.web.config.properties.XssProperties;
 import org.dromara.common.web.filter.RepeatableFilter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+
 
 /**
  * Filter配置
@@ -13,9 +12,7 @@ import org.springframework.context.annotation.Bean;
  * @author Lion Li
  */
 @AutoConfiguration
-@EnableConfigurationProperties(XssProperties.class)
 public class FilterConfig {
-
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean

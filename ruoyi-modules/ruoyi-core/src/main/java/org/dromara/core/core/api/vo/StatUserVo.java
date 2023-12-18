@@ -31,7 +31,7 @@ public class StatUserVo implements Serializable {
      */
     private Long total;
 
-    public static StatUserVo build (Long todayNum, Long yesterdayNum, Long sevenDayNum,Long total) {
+    public static StatUserVo build(Long todayNum, Long yesterdayNum, Long sevenDayNum, Long total) {
         StatUserVo statUserVo = new StatUserVo();
         statUserVo.setTodayNum(todayNum);
         statUserVo.setYesterdayNum(yesterdayNum);

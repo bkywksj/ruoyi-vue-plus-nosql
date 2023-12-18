@@ -1,13 +1,10 @@
 package org.dromara.common.oss.factory;
 
+import cn.hutool.core.util.BooleanUtil;
 import org.dromara.common.core.constant.CacheNames;
 import org.dromara.common.core.constant.Constants;
 import org.dromara.common.core.utils.SpringUtils;
-import org.dromara.common.core.utils.StringUtils;
-import org.dromara.common.json.utils.JsonUtils;
-import org.dromara.common.oss.constant.OssConstant;
 import org.dromara.common.oss.core.OssClient;
-import org.dromara.common.oss.exception.OssException;
 import org.dromara.common.oss.properties.OssProperties;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +22,7 @@ public class OssFactory {
     private static final Map<String, OssClient> CLIENT_CACHE = new ConcurrentHashMap<>();
 
     /**
-     * 获取默认实例
+     * 获取默认实例 默认本地
      */
     public static OssClient instance() {
         return instance(Constants.LOCAL);
@@ -38,6 +35,7 @@ public class OssFactory {
         OssProperties properties = new OssProperties();
         properties.setPrefix(SpringUtils.getApplicationName());
         properties.setIsHttps("N");
+        properties.setSecretKey("1");
         OssClient client = CLIENT_CACHE.get(configKey);
         if (client == null) {
             CLIENT_CACHE.put(configKey, new OssClient(configKey, properties));

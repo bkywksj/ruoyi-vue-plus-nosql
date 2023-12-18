@@ -20,7 +20,6 @@
             <groupId>org.dromara</groupId>
             <artifactId>ruoyi-common-json</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

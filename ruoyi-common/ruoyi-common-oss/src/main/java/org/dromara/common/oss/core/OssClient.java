@@ -40,7 +40,6 @@ public class OssClient {
         this.properties = ossProperties;
     }
 
-
     public UploadResult upload(byte[] data, String path, String contentType) {
         return upload(new ByteArrayInputStream(data), path, contentType);
     }
@@ -137,14 +136,12 @@ public class OssClient {
         return path + suffix;
     }
 
-
     /**
      * 检查配置是否相同
      */
     public boolean checkPropertiesSame(OssProperties properties) {
         return this.properties.equals(properties);
     }
-
 
     /**
      * 本地上传方法

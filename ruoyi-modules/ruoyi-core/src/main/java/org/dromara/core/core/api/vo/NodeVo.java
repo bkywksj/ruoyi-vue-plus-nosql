@@ -15,12 +15,24 @@ public class NodeVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 标签
+     */
     private String label;
 
+    /**
+     * 值
+     */
     private String value;
 
-    private Raw raw = new Raw();//兼容前端tag标签
+    /**
+     * 兼容前端tag标签
+     */
+    private Raw raw = new Raw();
 
+    /**
+     * 子节点
+     */
     private List<NodeVo> children;
 
     @Data
