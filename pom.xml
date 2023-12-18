@@ -18,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.mybatis>2.2.2</spring-boot.mybatis>
         <springdoc.version>1.6.15</springdoc.version>
         <poi.version>5.2.3</poi.version>
         <easyexcel.version>3.3.2</easyexcel.version>
@@ -35,7 +34,6 @@
         <snakeyaml.version>1.33</snakeyaml.version>
         <!--   邮件配置     -->
         <javax.activation.version>1.1.1</javax.activation.version>
-
 
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
@@ -181,7 +179,6 @@
                 <version>${satoken.version}</version>
             </dependency>
 
-
             <!--    邮箱依赖        -->
             <dependency>
                 <groupId>javax.activation</groupId>
@@ -194,8 +191,7 @@
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
             </dependency>
-
-
+            <!--PlusWebInvokeTimeInterceptor使用到-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>
@@ -222,14 +218,12 @@
                 <artifactId>bcprov-jdk15to18</artifactId>
                 <version>${bouncycastle.version}</version>
             </dependency>
-
             <!--    forest http请求工具        -->
             <dependency>
                 <groupId>com.dtflys.forest</groupId>
                 <artifactId>forest-spring-boot-starter</artifactId>
                 <version>${forest.version}</version>
             </dependency>
-
 
             <!-- 通用工具-->
             <dependency>

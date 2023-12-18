@@ -46,6 +46,3 @@ nbdist/
 !*/build/*.xml
 
 application-local.yml
-
-# uniapp端
-ruoyi-vue-plus-nosql_demo/unpackage/

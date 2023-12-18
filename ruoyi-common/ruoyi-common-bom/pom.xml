@@ -56,8 +56,6 @@
                 <version>${revision}</version>
             </dependency>
 
-
-
             <!-- satoken -->
             <dependency>
                 <groupId>org.dromara</groupId>
@@ -72,14 +70,12 @@
                 <version>${revision}</version>
             </dependency>
 
-
             <!-- web服务 -->
             <dependency>
                 <groupId>org.dromara</groupId>
                 <artifactId>ruoyi-common-web</artifactId>
                 <version>${revision}</version>
             </dependency>
-
 
             <!-- 脱敏模块 -->
             <dependency>
