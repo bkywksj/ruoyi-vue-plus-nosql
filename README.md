@@ -2,6 +2,8 @@
 移除数据库模块和redis模块和简化一些模块，只保留框架的基本功能，方便无数据库和无redis项目的快速开发。
 部署只需要提供一个jar包即可，无需配置数据库和redis。
 
+- [视频教程地址](https://www.bilibili.com/video/BV1Lg4y1C7FK)
+
 # 项目结构
 ``` 
 ├── ruoyi-admin -- 主模块
