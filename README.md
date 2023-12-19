@@ -11,3 +11,6 @@
 
 业务代码在ruoyi-modules中的ruoyi-service模块开发即可。
 ```
+
+# 更多项目
+- [ruoyi-vue-plus-uniapp](https://gitee.com/bkywksj/ruoyi-vue-plus-uniapp)：基于ruoyi-vue-plus全面改造，用于移动端（App及小程序的开发）
