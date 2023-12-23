@@ -5,9 +5,8 @@ import cn.dev33.satoken.listener.SaTokenListener;
 import cn.dev33.satoken.stp.SaLoginModel;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
-import org.dromara.common.core.constant.CacheConstants;
-import org.dromara.common.core.core.domain.dto.UserOnlineDTO;
-import org.dromara.common.core.core.domain.model.LoginUser;
+import org.dromara.common.core.domain.dto.UserOnlineDTO;
+import org.dromara.common.core.domain.model.LoginUser;
 import org.dromara.common.core.enums.UserType;
 import org.dromara.common.core.utils.ServletUtils;
 import org.dromara.common.core.utils.ip.AddressUtils;
@@ -15,8 +14,6 @@ import org.dromara.common.satoken.utils.LoginHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import java.time.Duration;
 
 /**
  * 用户行为 侦听器的实现

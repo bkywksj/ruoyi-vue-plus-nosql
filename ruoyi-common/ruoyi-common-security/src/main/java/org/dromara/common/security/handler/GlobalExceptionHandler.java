@@ -5,15 +5,10 @@ import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
-import org.dromara.common.core.core.domain.R;
-import org.dromara.common.core.core.domain.model.LoginUser;
-import org.dromara.common.core.exception.DemoModeException;
+import org.dromara.common.core.domain.R;
 import org.dromara.common.core.exception.ServiceException;
 import org.dromara.common.core.exception.base.BaseException;
 import org.dromara.common.core.utils.StreamUtils;
-import org.dromara.common.core.utils.SpringUtils;
-import org.dromara.common.satoken.core.event.ErrorLogEvent;
-import org.dromara.common.satoken.utils.LoginHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -180,11 +175,4 @@ public class GlobalExceptionHandler {
         return R.fail(message);
     }
 
-    /**
-     * 演示模式异常
-     */
-    @ExceptionHandler(DemoModeException.class)
-    public R<Void> handleDemoModeException(DemoModeException e) {
-        return R.fail("演示模式，不允许操作");
-    }
 }
