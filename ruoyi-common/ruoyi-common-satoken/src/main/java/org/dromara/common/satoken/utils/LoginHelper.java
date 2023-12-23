@@ -8,13 +8,11 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import org.dromara.common.core.constant.UserConstants;
-import org.dromara.common.core.core.domain.model.LoginUser;
+import org.dromara.common.core.domain.model.LoginUser;
 import org.dromara.common.core.enums.DeviceType;
 import org.dromara.common.core.enums.UserType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 /**
  * 登录鉴权助手

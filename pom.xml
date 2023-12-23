@@ -20,18 +20,16 @@
         <java.version>1.8</java.version>
         <springdoc.version>1.6.15</springdoc.version>
         <poi.version>5.2.3</poi.version>
-        <easyexcel.version>3.3.2</easyexcel.version>
-        <satoken.version>1.36.0</satoken.version>
-        <hutool.version>5.8.20</hutool.version>
+        <easyexcel.version>3.3.3</easyexcel.version>
+        <satoken.version>1.37.0</satoken.version>
+        <hutool.version>5.8.22</hutool.version>
         <okhttp.version>4.10.0</okhttp.version>
-        <alibaba-ttl.version>2.14.2</alibaba-ttl.version>
+        <alibaba-ttl.version>2.14.4</alibaba-ttl.version>
         <lombok.version>1.18.30</lombok.version>
-        <bouncycastle.version>1.72</bouncycastle.version>
+        <bouncycastle.version>1.76</bouncycastle.version>
         <!-- 离线IP地址定位库 -->
         <ip2region.version>2.7.0</ip2region.version>
 
-        <!-- 临时修复 snakeyaml 漏洞 -->
-        <snakeyaml.version>1.33</snakeyaml.version>
         <!--   邮件配置     -->
         <javax.activation.version>1.1.1</javax.activation.version>
 
@@ -203,13 +201,6 @@
                 <groupId>org.lionsoul</groupId>
                 <artifactId>ip2region</artifactId>
                 <version>${ip2region.version}</version>
-            </dependency>
-
-            <!-- 临时修复 snakeyaml 漏洞 -->
-            <dependency>
-                <groupId>org.yaml</groupId>
-                <artifactId>snakeyaml</artifactId>
-                <version>${snakeyaml.version}</version>
             </dependency>
 
             <!-- 加密包引入 -->

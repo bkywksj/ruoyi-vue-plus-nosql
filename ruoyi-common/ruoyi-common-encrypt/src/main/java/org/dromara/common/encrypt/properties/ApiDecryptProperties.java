@@ -23,12 +23,12 @@ public class ApiDecryptProperties {
 
 
     /**
-     * 公钥
+     * 响应加密公钥
      */
     private String publicKey;
 
     /**
-     * 私钥
+     * 请求解密私钥
      */
     private String privateKey;
 }

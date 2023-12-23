@@ -1,7 +1,7 @@
 package org.dromara.common.core.service;
 
 
-import org.dromara.common.core.core.domain.model.LoginUser;
+import org.dromara.common.core.domain.model.LoginUser;
 
 /**
  * 通用 用户服务

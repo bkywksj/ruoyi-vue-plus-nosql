@@ -1,9 +1,9 @@
 package org.dromara.common.web.core;
 
 
-import org.dromara.common.core.core.domain.R;
-import org.dromara.common.core.core.domain.dto.RoleDTO;
-import org.dromara.common.core.core.domain.model.LoginUser;
+import org.dromara.common.core.domain.R;
+import org.dromara.common.core.domain.dto.RoleDTO;
+import org.dromara.common.core.domain.model.LoginUser;
 import org.dromara.common.core.exception.ServiceException;
 import org.dromara.common.core.service.UserService;
 import org.dromara.common.core.utils.ServletUtils;
@@ -116,25 +116,33 @@ public class BaseController {
         return R.fail(msg, data);
     }
 
-    //可以自定义code
+    /**
+     * 可以自定义code
+     */
     public <T> R<T> fail(int code, String msg) {
         return R.fail(code, msg);
     }
 
-    //校验管理员
+    /**
+     * 校验管理员
+     */
     public void checkAdmin() {
         if (!isAdmin()) {
             throw new ServiceException("权限不足");
         }
     }
 
-    //是否管理员(不传参)
+    /**
+     * 是否管理员(不传参)
+     */
     public Boolean isAdmin() {
         LoginUser loginUser = getLoginUser();
         return isAdmin(loginUser);
     }
 
-    //是否管理员(传参)
+    /**
+     * 是否管理员(传参)
+     */
     public Boolean isAdmin(LoginUser loginUser) {
         List<RoleDTO> filter = StreamUtils.filter(loginUser.getRoles(),
             roleDTO -> roleDTO.getRoleKey().contains("admin"));
