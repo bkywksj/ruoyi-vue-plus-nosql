@@ -169,10 +169,10 @@ springdoc:
         name: ${sa-token.token-name}
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
-    #http://localhost:5400/v3/api-docs/service
+    #http://localhost:5405/v3/api-docs/service
     - group: service
       packages-to-scan: org.dromara.service
-    #http://localhost:5400/v3/api-docs/core
+    #http://localhost:5405/v3/api-docs/core
     - group: core
       packages-to-scan: org.dromara.core
 
@@ -185,6 +185,11 @@ thread-pool:
   # 线程池维护线程所允许的空闲时间
   keepAliveSeconds: 300
 
+--- # forest配置 https://forest.dtflyx.com/
+forest:
+  max-connections: 1000        # 连接池最大连接数
+  connect-timeout: 300000        # 连接超时时间，单位为毫秒
+  read-timeout: 300000           # 数据读取超时时间，单位为毫秒
 
 --- # mail 邮件发送
 mail:
