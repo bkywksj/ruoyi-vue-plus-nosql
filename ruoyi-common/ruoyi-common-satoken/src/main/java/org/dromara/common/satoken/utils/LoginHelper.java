@@ -1,18 +1,15 @@
 package org.dromara.common.satoken.utils;
 
-import cn.dev33.satoken.context.SaHolder;
-import cn.dev33.satoken.context.model.SaStorage;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
-import org.dromara.common.core.constant.UserConstants;
-import org.dromara.common.core.domain.model.LoginUser;
-import org.dromara.common.core.enums.DeviceType;
-import org.dromara.common.core.enums.UserType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.dromara.common.core.constant.UserConstants;
+import org.dromara.common.core.domain.model.LoginUser;
+import org.dromara.common.core.enums.UserType;
 
 /**
  * 登录鉴权助手
@@ -31,6 +28,9 @@ public class LoginHelper {
 
     public static final String LOGIN_USER_KEY = "loginUser";
     public static final String USER_KEY = "userId";
+    public static final String USER_NAME_KEY = "userName";
+    public static final String DEPT_KEY = "deptId";
+    public static final String DEPT_NAME_KEY = "deptName";
     public static final String CLIENT_KEY = "clientid";
 
     /**
@@ -41,48 +41,15 @@ public class LoginHelper {
      * @param model     配置参数
      */
     public static void login(LoginUser loginUser, SaLoginModel model) {
-        SaStorage storage = SaHolder.getStorage();
-        storage.set(LOGIN_USER_KEY, loginUser);
-        storage.set(USER_KEY, loginUser.getUserId());
         model = ObjectUtil.defaultIfNull(model, new SaLoginModel());
         StpUtil.login(loginUser.getLoginId(),
-            model.setExtra(USER_KEY, loginUser.getUserId()));
-        StpUtil.getTokenSession().set(LOGIN_USER_KEY, loginUser);
-    }
-
-    /**
-     * 登录系统
-     *
-     * @param loginUser 登录用户信息
-     */
-    public static void login(LoginUser loginUser) {
-        loginByDevice(loginUser, null);
-    }
-
-    /**
-     * 登录系统 基于 设备类型
-     * 针对相同用户体系不同设备
-     *
-     * @param loginUser 登录用户信息
-     */
-    public static void loginByDevice(LoginUser loginUser, DeviceType deviceType) {
-        SaStorage storage = SaHolder.getStorage();
-        storage.set(LOGIN_USER_KEY, loginUser);
-        storage.set(USER_KEY, loginUser.getUserId());
-        SaLoginModel model = new SaLoginModel();
-        if (ObjectUtil.isNotNull(deviceType)) {
-            model.setDevice(deviceType.getDevice());
-        }
-        // 自定义分配 不同用户体系 不同 token 授权时间 不设置默认走全局 yml 配置
-        // 例如: 后台用户30分钟过期 app用户1天过期
-//        UserType userType = UserType.getUserType(loginUser.getUserType());
-//        if (userType == UserType.SYS_USER) {
-//            model.setTimeout(86400).setActiveTimeout(1800);
-//        } else if (userType == UserType.APP_USER) {
-//            model.setTimeout(86400).setActiveTimeout(1800);
-//        }
-        StpUtil.login(loginUser.getLoginId(), model.setExtra(USER_KEY, loginUser.getUserId()));
-        StpUtil.getTokenSession().set(LOGIN_USER_KEY, loginUser);
+            model.setExtra(USER_KEY, loginUser.getUserId())
+                .setExtra(USER_NAME_KEY, loginUser.getUsername())
+                .setExtra(DEPT_KEY, loginUser.getDeptId())
+                .setExtra(DEPT_NAME_KEY, loginUser.getDeptName()));
+        SaSession tokenSession = StpUtil.getTokenSession();
+        tokenSession.updateTimeout(model.getTimeout());
+        tokenSession.set(LOGIN_USER_KEY, loginUser);
     }
 
     /**
@@ -96,17 +63,11 @@ public class LoginHelper {
      * 获取用户(多级缓存)
      */
     public static LoginUser getLoginUser() {
-        LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
-        if (loginUser != null) {
-            return loginUser;
-        }
         SaSession session = StpUtil.getTokenSession();
         if (ObjectUtil.isNull(session)) {
             return null;
         }
-        loginUser = (LoginUser) session.get(LOGIN_USER_KEY);
-        SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
-        return loginUser;
+        return (LoginUser) session.get(LOGIN_USER_KEY);
     }
 
     /**
@@ -124,24 +85,28 @@ public class LoginHelper {
      * 获取用户id
      */
     public static Long getUserId() {
-        Long userId;
-        try {
-            userId = Convert.toLong(SaHolder.getStorage().get(USER_KEY));
-            if (ObjectUtil.isNull(userId)) {
-                userId = Convert.toLong(StpUtil.getExtra(USER_KEY));
-                SaHolder.getStorage().set(USER_KEY, userId);
-            }
-        } catch (Exception e) {
-            return null;
-        }
-        return userId;
+        return Convert.toLong(getExtra(USER_KEY));
     }
 
     /**
      * 获取部门ID
      */
     public static Long getDeptId() {
-        return getLoginUser().getDeptId();
+        return Convert.toLong(getExtra(DEPT_KEY));
+    }
+
+    /**
+     * 获取额外信息
+     *
+     * @param key 键
+     */
+    private static Object getExtra(String key) {
+        try {
+            return StpUtil.getExtra(key);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     /**
@@ -153,6 +118,17 @@ public class LoginHelper {
             return null;
         }
         return loginUser.getUsername();
+    }
+
+    /**
+     * 获取用户部门
+     */
+    public static String getDeptName() {
+        LoginUser loginUser = getLoginUser();
+        if (ObjectUtil.isNull(loginUser)) {
+            return null;
+        }
+        return loginUser.getDeptName();
     }
 
     /**
@@ -175,6 +151,13 @@ public class LoginHelper {
 
     public static boolean isAdmin() {
         return isAdmin(getUserId());
+    }
+
+    /**
+     * 是否登录
+     */
+    public static boolean isLogin() {
+        return getLoginUser() != null;
     }
 
 }

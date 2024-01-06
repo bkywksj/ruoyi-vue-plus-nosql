@@ -2,7 +2,6 @@ package org.dromara.common.web.interceptor;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.map.MapUtil;
-import com.alibaba.ttl.TransmittableThreadLocal;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 import org.dromara.common.core.constant.Constants;
@@ -30,7 +29,7 @@ import java.util.Map;
 public class PlusWebInvokeTimeInterceptor implements HandlerInterceptor {
 
 
-    private final TransmittableThreadLocal<StopWatch> invokeTimeTL = new TransmittableThreadLocal<>();
+    private final static ThreadLocal<StopWatch> KEY_CACHE = new ThreadLocal<>();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -56,7 +55,7 @@ public class PlusWebInvokeTimeInterceptor implements HandlerInterceptor {
             }
 
             StopWatch stopWatch = new StopWatch();
-            invokeTimeTL.set(stopWatch);
+            KEY_CACHE.set(stopWatch);
             stopWatch.start();
         }
         return true;
@@ -70,10 +69,10 @@ public class PlusWebInvokeTimeInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         if (!Constants.PROD.equals(SpringUtils.getActiveProfile())) {
-            StopWatch stopWatch = invokeTimeTL.get();
+            StopWatch stopWatch = KEY_CACHE.get();
             stopWatch.stop();
             log.info("[PLUS]结束请求 => URL[{}],耗时:[{}]毫秒", request.getMethod() + " " + request.getRequestURI(), stopWatch.getTime());
-            invokeTimeTL.remove();
+            KEY_CACHE.remove();
         }
     }
 
