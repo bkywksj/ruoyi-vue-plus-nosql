@@ -52,6 +52,7 @@ logging:
   level:
     org.dromara: @logging.level@
     org.springframework: warn
+    org.mybatis.spring.mapper: error
   config: classpath:logback-plus.xml
 
 # Spring配置
@@ -186,9 +187,11 @@ thread-pool:
 
 --- # forest配置 https://forest.dtflyx.com/
 forest:
-  max-connections: 1000        # 连接池最大连接数
-  connect-timeout: 300000        # 连接超时时间，单位为毫秒
-  read-timeout: 300000           # 数据读取超时时间，单位为毫秒
+  # 在spring上下文中bean的id，可以在 Spring 中通过 Bean 的名称引用
+  bean-id: forestConfiguration
+  # 全局变量可以在任何模板表达式中进行数据绑定
+  variables:
+    clientId: e5cd7e4891bf95d1d19206ce24a7b32e
 
 --- # mail 邮件发送
 mail:

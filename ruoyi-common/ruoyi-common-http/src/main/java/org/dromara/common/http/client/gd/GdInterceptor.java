@@ -1,4 +1,4 @@
-package org.dromara.core.core.utils.gd;
+package org.dromara.common.http.client.gd;
 
 import com.dtflys.forest.http.ForestRequest;
 import com.dtflys.forest.interceptor.Interceptor;

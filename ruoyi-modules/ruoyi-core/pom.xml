@@ -17,11 +17,6 @@
             <artifactId>ruoyi-common-encrypt</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.dtflys.forest</groupId>
-            <artifactId>forest-spring-boot-starter</artifactId>
-        </dependency>
-
         <!-- 通用工具-->
         <dependency>
             <groupId>org.dromara</groupId>
@@ -68,6 +63,11 @@
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>ruoyi-common-caffeine</artifactId>
+        </dependency>
+        <!--    http客户端    -->
+        <dependency>
+            <groupId>org.dromara</groupId>
+            <artifactId>ruoyi-common-http</artifactId>
         </dependency>
     </dependencies>
 

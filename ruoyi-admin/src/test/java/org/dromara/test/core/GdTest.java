@@ -3,12 +3,12 @@ package org.dromara.test.core;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.CoordinateUtil;
 import com.dtflys.forest.config.ForestConfiguration;
-import org.dromara.core.core.utils.gd.GdClient;
-import org.dromara.core.core.utils.gd.GdUtil;
-import org.dromara.core.core.utils.gd.vo.GeoVO;
-import org.dromara.core.core.utils.gd.vo.IPVO;
-import org.dromara.core.core.utils.gd.vo.RegeoVO;
-import org.dromara.core.core.utils.gd.vo.Weather;
+import org.dromara.common.http.client.gd.GdClient;
+import org.dromara.common.http.client.gd.GdUtil;
+import org.dromara.common.http.client.gd.vo.GeoVO;
+import org.dromara.common.http.client.gd.vo.IPVO;
+import org.dromara.common.http.client.gd.vo.RegeoVO;
+import org.dromara.common.http.client.gd.vo.Weather;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

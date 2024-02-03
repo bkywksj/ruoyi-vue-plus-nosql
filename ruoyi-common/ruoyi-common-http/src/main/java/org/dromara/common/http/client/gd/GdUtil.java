@@ -1,22 +1,16 @@
-package org.dromara.core.core.utils.gd;
+package org.dromara.common.http.client.gd;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.lang.Console;
-import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.CoordinateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONUtil;
 import com.dtflys.forest.config.ForestConfiguration;
 import org.dromara.common.core.utils.SpringUtils;
 import org.dromara.common.core.utils.StringUtils;
-import org.dromara.core.core.utils.gd.vo.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dromara.common.http.client.gd.vo.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.HashMap;
 import java.util.List;
 
 /**

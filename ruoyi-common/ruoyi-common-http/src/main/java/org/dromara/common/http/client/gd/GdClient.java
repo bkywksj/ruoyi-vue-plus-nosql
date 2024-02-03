@@ -1,8 +1,8 @@
-package org.dromara.core.core.utils.gd;
+package org.dromara.common.http.client.gd;
 
 import cn.hutool.core.util.CoordinateUtil;
 import com.dtflys.forest.annotation.*;
-import org.dromara.core.core.utils.gd.vo.*;
+import org.dromara.common.http.client.gd.vo.*;
 
 /**
  * 高德请求工具
