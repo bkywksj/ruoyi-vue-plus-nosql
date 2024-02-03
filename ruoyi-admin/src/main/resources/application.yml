@@ -54,7 +54,6 @@ logging:
     org.springframework: warn
   config: classpath:logback-plus.xml
 
-
 # Spring配置
 spring:
   application:
@@ -171,10 +170,10 @@ springdoc:
   group-configs:
     #http://localhost:5405/v3/api-docs/service
     - group: service
-      packages-to-scan: org.dromara.service
+      packages-to-scan: org.dromara.core.service
     #http://localhost:5405/v3/api-docs/core
     - group: core
-      packages-to-scan: org.dromara.core
+      packages-to-scan: org.dromara.core.core
 
 # 全局线程池相关配置
 thread-pool:

@@ -1,7 +1,9 @@
 package org.dromara.common.core.utils;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.http.HtmlUtil;
 import cn.hutool.http.HttpStatus;
 import org.dromara.common.core.constant.Constants;
 import lombok.AccessLevel;
@@ -195,8 +197,17 @@ public class ServletUtils extends ServletUtil {
         return StringUtils.equalsAnyIgnoreCase(ajax, "json", "xml");
     }
 
+    /**
+     * 获取客户端ip
+     */
     public static String getClientIP() {
-        return getClientIP(getRequest());
+        String clientIP = getClientIP(getRequest());
+        return clientIP.contains("0:0:0:0:0:0:0:1") ? "127.0.0.1" : HtmlUtil.cleanHtmlTag(clientIP);
+    }
+
+    public static String getClientIPByRequest(HttpServletRequest request, String... otherHeaderNames) {
+        String clientIP = getClientIP(request, otherHeaderNames);
+        return clientIP.contains("0:0:0:0:0:0:0:1") ? "127.0.0.1" : HtmlUtil.cleanHtmlTag(clientIP);
     }
 
     /**
