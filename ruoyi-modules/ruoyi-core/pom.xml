@@ -64,6 +64,11 @@
             <groupId>org.dromara</groupId>
             <artifactId>ruoyi-common-mail</artifactId>
         </dependency>
+        <!-- caffeine缓存 -->
+        <dependency>
+            <groupId>org.dromara</groupId>
+            <artifactId>ruoyi-common-caffeine</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

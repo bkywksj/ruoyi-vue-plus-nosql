@@ -98,7 +98,12 @@
                 <version>${revision}</version>
             </dependency>
 
-
+            <!-- 咖啡因缓存 -->
+            <dependency>
+                <groupId>org.dromara</groupId>
+                <artifactId>ruoyi-common-caffeine</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
